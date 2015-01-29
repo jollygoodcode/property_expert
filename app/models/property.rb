@@ -1,6 +1,8 @@
 class Property < ActiveRecord::Base
   ACCEPT_TYPES = ["Apartment", "Condominium", "Landed House", "HDB Apartment"]
 
+  belongs_to :agent
+
   validates_presence_of :name
   validates_numericality_of :price
   validates_length_of :description, minimum: 140, too_short: 'please enter at least 140 characters', maximum: 1000

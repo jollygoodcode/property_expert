@@ -1,4 +1,6 @@
 class Agent < ActiveRecord::Base
+  has_many :properties
+
   validates_presence_of :name
   validates_presence_of :company
   validates_presence_of :mobile
