@@ -1,6 +1,6 @@
-<h1>New Property</h1>
+<h1>Edit Property</h1>
 
-<%= form_for :property, url: properties_path do |f| %>
+<%= form_for :property, url: property_path(@property), method: :patch do |f| %>
   <% if @property.errors.any? %>
     <div>
       <ul>
