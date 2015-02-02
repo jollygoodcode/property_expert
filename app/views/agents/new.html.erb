@@ -1,6 +1,8 @@
-<h1>New Agent</h1>
+<div class="page-header">
+  <h1>New Agent</h1>
+</div>
 
-<%= form_for :agent, url: agents_path do |f| %>
+<%= form_for :agent, url: agents_path, html: { class: "form-horizontal" } do |f| %>
   <% if @agent.errors.any? %>
     <div>
       <ul>
@@ -11,24 +13,32 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
-  </p>
+  <div class="form-group">
+    <%= f.label :company, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :company, class: "form-control" %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.label :mobile %><br>
-    <%= f.text_area :mobile %>
-  </p>
+  <div class="form-group">
+    <%= f.label :mobile, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :mobile, class: "form-control" %>
+    </div>
+  </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= f.submit class: "btn btn-default" %>
+      or
+      <%= link_to 'Back', agents_path %>
+    </div>
+  </div>
 <% end %>
-
-<p><%= link_to 'Back', agents_path %></p>
