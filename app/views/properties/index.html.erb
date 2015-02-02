@@ -1,6 +1,8 @@
-<h1>Listing properties</h1>
+<div class="page-header">
+  <h1>Listing properties</h1>
+</div>
 
-<table>
+<table class="table">
   <tr>
     <th>Title</th>
     <th>Price</th>
@@ -13,11 +15,11 @@
     <tr>
       <td><%= property.name %></td>
       <td><%= property.price %></td>
-      <td><%= truncate property.description %></td>
+      <td><%= property.description %></td>
       <td><%= property.property_type %></td>
-      <td><%= link_to "Show", property_path(property) %></td>
-      <td><%= link_to "Edit", edit_property_path(property) %></td>
-      <td><%= link_to "Destroy", property_path(property), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      <td><%= link_to "Show", property_path(property), class: 'btn btn-primary' %></td>
+      <td><%= link_to "Edit", edit_property_path(property), class: 'btn btn-success' %></td>
+      <td><%= link_to "Destroy", property_path(property), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" } %></td>
     </tr>
   <% end %>
 </table>
