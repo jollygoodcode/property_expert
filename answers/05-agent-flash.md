@@ -1,3 +1,8 @@
+# Answer: Agent Flash
+
+**`app/controllers/agents_controller`:**
+
+```ruby
 class AgentsController < ApplicationController
   def index
     @agents = Agent.all
@@ -44,3 +49,4 @@ class AgentsController < ApplicationController
     redirect_to agents_path, notice: "Agent deleted successfully."
   end
 end
+```
