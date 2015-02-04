@@ -11,8 +11,9 @@ class PropertiesController < ApplicationController
     @property = Property.new(params.require(:property).permit(:name, :price, :description, :property_type, :agent_id))
 
     if @property.save
-      redirect_to @property
+      redirect_to @property, notice: "Property created successfully."
     else
+      flash.now[:error] = "Could not save property."
       render :new
     end
   end
@@ -29,8 +30,9 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
 
     if @property.update(params.require(:property).permit(:name, :price, :description, :property_type, :agent_id))
-      redirect_to @property
+      redirect_to @property, notice: "Property updated successfully."
     else
+      flash.now[:error] = "Could not save property."
       render :edit
     end
   end
@@ -39,6 +41,6 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @property.destroy
 
-    redirect_to properties_path
+    redirect_to properties_path, notice: "Property deleted successfully."
   end
 end
