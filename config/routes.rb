@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root "properties#index"
 
   resources :properties
   resources :agents
+
+  get "/contact_us" => "contacts#new"
+  post "/contact_us" => "contacts#create"
 end
