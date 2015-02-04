@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   resources :properties
+  resources :agents
 end

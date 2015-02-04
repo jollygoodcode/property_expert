@@ -1,0 +1,34 @@
+<h1>New Agent</h1>
+
+<%= form_for :agent, url: agents_path do |f| %>
+  <% if @agent.errors.any? %>
+    <div>
+      <ul>
+        <% @agent.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :company %><br>
+    <%= f.text_field :company %>
+  </p>
+
+  <p>
+    <%= f.label :mobile %><br>
+    <%= f.text_area :mobile %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<p><%= link_to 'Back', agents_path %></p>
