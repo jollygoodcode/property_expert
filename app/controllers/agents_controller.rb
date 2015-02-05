@@ -8,7 +8,7 @@ class AgentsController < ApplicationController
   end
 
   def create
-    @agent = Agent.new(params.require(:agent).permit(:name, :company, :mobile))
+    @agent = Agent.new(params.require(:agent).permit(:name, :company, :mobile, :photo))
 
     if @agent.save
       redirect_to @agent, notice: "Agent created successfully."
@@ -29,7 +29,7 @@ class AgentsController < ApplicationController
   def update
     @agent = Agent.find(params[:id])
 
-    if @agent.update(params.require(:agent).permit(:name, :company, :mobile))
+    if @agent.update(params.require(:agent).permit(:name, :company, :mobile, :photo))
       redirect_to @agent, notice: "Agent created successfully."
     else
       flash.now[:error] = "Could not save agent."

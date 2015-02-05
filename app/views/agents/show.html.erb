@@ -13,4 +13,14 @@
   <%= @agent.mobile %>
 </p>
 
+<div class="row">
+  <% if @agent.photo.present? %>
+    <div class="col-sm-4">
+      <div class="thumbnail">
+        <%= image_tag @agent.photo.url(:medium) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <p><%= link_to 'Back', agents_path %></p>
