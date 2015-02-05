@@ -1,4 +1,6 @@
 class PropertiesController < ApplicationController
+  before_action :find_property, only: [:show, :edit, :update, :destroy]
+
   def index
     @properties = Property.all
   end
@@ -8,7 +10,7 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @property = Property.new(params.require(:property).permit(:name, :price, :description, :property_type, photos_attributes: [:id, :file, :_destroy]))
+    @property = Property.new(model_params)
 
     if @property.save
       redirect_to @property, notice: "Property created successfully."
@@ -19,17 +21,13 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id])
   end
 
   def edit
-    @property = Property.find(params[:id])
   end
 
   def update
-    @property = Property.find(params[:id])
-
-    if @property.update(params.require(:property).permit(:name, :price, :description, :property_type, photos_attributes: [:id, :file, :_destroy]))
+    if @property.update(model_params)
       redirect_to @property, notice: "Property updated successfully."
     else
       flash.now[:error] = "Could not save property."
@@ -38,14 +36,22 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
-    @property = Property.find(params[:id])
     @property.destroy
-
     redirect_to properties_path, notice: "Property deleted successfully."
   end
 
   def interested
     ContactMailer.interested_in(params[:id]).deliver_now
     redirect_to root_path, notice: "Thanks for your feedback!"
+  end
+
+  private
+
+  def model_params
+    params.require(:property).permit(:name, :price, :description, :property_type, photos_attributes: [:id, :file, :_destroy])
+  end
+
+  def find_property
+    @property = Property.find(params[:id])
   end
 end

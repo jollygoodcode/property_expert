@@ -1,4 +1,6 @@
 class AgentsController < ApplicationController
+  before_action :find_agent, only: [:show, :edit, :update, :destroy]
+
   def index
     @agents = Agent.all
   end
@@ -8,7 +10,7 @@ class AgentsController < ApplicationController
   end
 
   def create
-    @agent = Agent.new(params.require(:agent).permit(:name, :company, :mobile, :photo))
+    @agent = Agent.new(model_params)
 
     if @agent.save
       redirect_to @agent, notice: "Agent created successfully."
@@ -19,17 +21,13 @@ class AgentsController < ApplicationController
   end
 
   def show
-    @agent = Agent.find(params[:id])
   end
 
   def edit
-    @agent = Agent.find(params[:id])
   end
 
   def update
-    @agent = Agent.find(params[:id])
-
-    if @agent.update(params.require(:agent).permit(:name, :company, :mobile, :photo))
+    if @agent.update(model_params)
       redirect_to @agent, notice: "Agent created successfully."
     else
       flash.now[:error] = "Could not save agent."
@@ -38,9 +36,17 @@ class AgentsController < ApplicationController
   end
 
   def destroy
-    @agent = Agent.find(params[:id])
     @agent.destroy
-
     redirect_to agents_path, notice: "Agent deleted successfully."
   end
+
+  private
+
+    def model_params
+      params.require(:agent).permit(:name, :company, :mobile, :photo)
+    end
+
+    def find_agent
+      @agent = Agent.find(params[:id])
+    end
 end

@@ -1,0 +1,67 @@
+<%= form_for property, html: { class: "form-horizontal" } do |f| %>
+  <% if property.errors.any? %>
+    <div>
+      <ul>
+        <% property.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :description, class: "form-control", rows: 5 %>
+      <span id="helpBlock" class="help-block">At least 140 characters.</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :property_type, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :property_type, Property::ACCEPT_TYPES, {}, { class: "form-control" } %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :agent_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :agent_id, Agent.all, :id, :name, {}, { class: "form-control" } %>
+    </div>
+  </div>
+
+  <div id="photos">
+    <%= f.fields_for :photos do |photo| %>
+      <%= render 'photo_fields', f: photo %>
+    <% end %>
+  </div>
+
+  <div class="row add-photo-link">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= link_to_add_association 'add photo', f, :photos %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= f.submit class: "btn btn-default" %>
+      or
+      <%= link_to 'Back', properties_path %>
+    </div>
+  </div>
+<% end %>
