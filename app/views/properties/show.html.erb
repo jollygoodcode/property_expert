@@ -19,26 +19,10 @@
 </p>
 
 <div class="row">
-  <% if @property.photo_1.present? %>
+  <% @property.photos.each do |photo| %>
     <div class="col-sm-4">
       <div class="thumbnail">
-        <%= image_tag @property.photo_1.url(:medium) %>
-      </div>
-    </div>
-  <% end %>
-
-  <% if @property.photo_2.present? %>
-    <div class="col-sm-4">
-      <div class="thumbnail">
-        <%= image_tag @property.photo_2.url(:medium) %>
-      </div>
-    </div>
-  <% end %>
-
-  <% if @property.photo_3.present? %>
-    <div class="col-sm-4">
-      <div class="thumbnail">
-        <%= image_tag @property.photo_3.url(:medium) %>
+        <%= image_tag photo.file.url(:medium) %>
       </div>
     </div>
   <% end %>

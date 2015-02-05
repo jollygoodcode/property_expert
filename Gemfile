@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'paperclip'
 
+gem 'cocoon'
+
 group :development do
   gem 'letter_opener'
 end

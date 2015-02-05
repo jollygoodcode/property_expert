@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @property = Property.new(params.require(:property).permit(:name, :price, :description, :property_type, :agent_id, :photo_1, :photo_2, :photo_3))
+    @property = Property.new(params.require(:property).permit(:name, :price, :description, :property_type, photos_attributes: [:id, :file, :_destroy]))
 
     if @property.save
       redirect_to @property, notice: "Property created successfully."
@@ -29,7 +29,7 @@ class PropertiesController < ApplicationController
   def update
     @property = Property.find(params[:id])
 
-    if @property.update(params.require(:property).permit(:name, :price, :description, :property_type, :agent_id, :photo_1, :photo_2, :photo_3))
+    if @property.update(params.require(:property).permit(:name, :price, :description, :property_type, photos_attributes: [:id, :file, :_destroy]))
       redirect_to @property, notice: "Property updated successfully."
     else
       flash.now[:error] = "Could not save property."

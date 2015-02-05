@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205075526) do
+ActiveRecord::Schema.define(version: 20150205124505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 20150205075526) do
     t.datetime "photo_updated_at"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "photos", ["owner_type", "owner_id"], name: "index_photos_on_owner_type_and_owner_id", using: :btree
+
   create_table "properties", force: :cascade do |t|
     t.string   "name"
     t.string   "property_type"
@@ -38,25 +51,13 @@ ActiveRecord::Schema.define(version: 20150205075526) do
     t.string   "postal_code"
     t.string   "street"
     t.integer  "bedrooms"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "baths"
     t.integer  "tenure"
     t.string   "developer"
     t.string   "condition"
     t.integer  "agent_id"
-    t.string   "photo_1_file_name"
-    t.string   "photo_1_content_type"
-    t.integer  "photo_1_file_size"
-    t.datetime "photo_1_updated_at"
-    t.string   "photo_2_file_name"
-    t.string   "photo_2_content_type"
-    t.integer  "photo_2_file_size"
-    t.datetime "photo_2_updated_at"
-    t.string   "photo_3_file_name"
-    t.string   "photo_3_content_type"
-    t.integer  "photo_3_file_size"
-    t.datetime "photo_3_updated_at"
   end
 
   add_index "properties", ["agent_id"], name: "index_properties_on_agent_id", using: :btree

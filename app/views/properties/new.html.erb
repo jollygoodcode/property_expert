@@ -2,7 +2,7 @@
   <h1>New Property</h1>
 </div>
 
-<%= form_for :property, url: properties_path, html: { class: "form-horizontal" } do |f| %>
+<%= form_for @property, url: properties_path, html: { class: "form-horizontal" } do |f| %>
   <% if @property.errors.any? %>
     <div>
       <ul>
@@ -49,39 +49,15 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :photo_1, class: "col-sm-2 control-label" %>
-
-    <div class="col-sm-8">
-      <%= f.file_field :photo_1, class: "form-control" %>
-    </div>
-
-    <div class="col-sm-2 text-left">
-      <%= image_tag @property.photo_1.url(:small) if @property.photo_1.present? %>
-    </div>
+  <div id="photos">
+    <%= f.fields_for :photos do |photo| %>
+      <%= render 'photo_fields', f: photo %>
+    <% end %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :photo_2, class: "col-sm-2 control-label" %>
-
-    <div class="col-sm-8">
-      <%= f.file_field :photo_2, class: "form-control" %>
-    </div>
-
-    <div class="col-sm-2 text-left">
-      <%= image_tag @property.photo_2.url(:small) if @property.photo_2.present?  %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :photo_3, class: "col-sm-2 control-label" %>
-
-    <div class="col-sm-8">
-      <%= f.file_field :photo_3, class: "form-control" %>
-    </div>
-
-    <div class="col-sm-2 text-left">
-      <%= image_tag @property.photo_3.url(:small) if @property.photo_3.present?  %>
+  <div class="row add-photo-link">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= link_to_add_association 'add photo', f, :photos %>
     </div>
   </div>
 
