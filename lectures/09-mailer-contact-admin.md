@@ -65,6 +65,30 @@ Content-Transfer-Encoding: 7bit
 => #<Mail::Message:70234957190780, Multipart: false, Headers: <Date: Wed, 04 Feb 2015 22:49:19 +0800>, <From: hello@example.com>, <To: pg@example.com>, <Message-ID: <54d2316f452d8_65a43fe0d4c601fc8653d@shinshous-MacBook-Pro.local.mail>>, <Subject: Welcome to Property Expert>, <Mime-Version: 1.0>, <Content-Type: text/html>, <Content-Transfer-Encoding: 7bit>>
 ```
 
+## [letter_opener](https://github.com/ryanb/letter_opener) to Preview Email
+
+```ruby
+group :development do
+  gem 'letter_opener'
+end
+```
+
+**`config/environments/development.rb`:**
+
+```ruby
+config.action_mailer.delivery_method = :letter_opener
+```
+
+Now any email will pop up in your browser instead of being sent.
+
+```
+$ rails console
+
+> agent = Agent.create(name: "Paul Graham", email: "pg@example.com", company: "Y Combinator", mobile: "9876 5432")
+
+> ContactMailer.welcome_agent(agent).deliver_now
+```
+
 ## Contact Admin: Model
 
 ```
