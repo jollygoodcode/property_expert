@@ -43,4 +43,9 @@ class PropertiesController < ApplicationController
 
     redirect_to properties_path, notice: "Property deleted successfully."
   end
+
+  def interested
+    ContactMailer.interested_in(params[:id]).deliver_now
+    redirect_to root_path, notice: "Thanks for your feedback!"
+  end
 end

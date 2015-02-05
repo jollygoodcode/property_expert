@@ -15,4 +15,14 @@ class ContactMailer < ActionMailer::Base
       subject: @contact.subject
     )
   end
+
+  def interested_in(property_id)
+    @property = Property.find(property_id)
+    @agent = @property.agent
+
+    mail(
+      to: @agent.email,
+      subject: "Someone interested in your property!"
+    )
+  end
 end

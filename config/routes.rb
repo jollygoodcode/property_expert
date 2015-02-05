@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root "properties#index"
 
-  resources :properties
+  resources :properties do
+    post "interested", on: :member
+  end
+
   resources :agents
 
   get "/contact_us" => "contacts#new"

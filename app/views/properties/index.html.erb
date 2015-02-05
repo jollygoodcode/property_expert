@@ -4,6 +4,7 @@
 
 <table class="table">
   <tr>
+    <th></th>
     <th>Title</th>
     <th>Price</th>
     <th>description</th>
@@ -13,6 +14,7 @@
 
   <% @properties.each do |property| %>
     <tr>
+      <td><%= link_to "Interest", interested_property_path(property), class: 'btn btn-info', method: :post %></td>
       <td><%= property.name %></td>
       <td><%= property.price %></td>
       <td><%= property.description %></td>
