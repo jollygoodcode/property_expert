@@ -1,10 +1,10 @@
 class ContactMailer < ActionMailer::Base
   default from: 'hello@example.com'
 
-  def welcome_agent(agent)
-    @agent = agent
-    mail(to: @agent.email, subject: 'Welcome to Property Expert')
-  end
+  # def welcome_agent(agent)
+  #   @agent = agent
+  #   mail(to: @agent.email, subject: 'Welcome to Property Expert')
+  # end
 
   def contact_us(contact)
     @contact = contact
@@ -16,13 +16,13 @@ class ContactMailer < ActionMailer::Base
     )
   end
 
-  def interested_in(property_id)
-    @property = Property.find(property_id)
-    @agent = @property.agent
+  # def interested_in(property_id)
+  #   @property = Property.find(property_id)
+  #   @agent = @property.agent
 
-    mail(
-      to: @agent.email,
-      subject: "Someone interested in your property!"
-    )
-  end
+  #   mail(
+  #     to: @agent.email,
+  #     subject: "Someone interested in your property!"
+  #   )
+  # end
 end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     post "interested", on: :member
   end
 
-  resources :agents
+  # resources :agents
 
   get "/contact_us" => "contacts#new"
   post "/contact_us" => "contacts#create"
