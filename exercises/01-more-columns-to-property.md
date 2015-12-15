@@ -7,4 +7,6 @@
 
 TIP: `add_column`
 
+<sup>http://api.rubyonrails.org/classes/ActiveRecord/Migration.html</sup>
+
 <sup>http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/PostgreSQL/SchemaStatements.html#method-i-add_column</sup>
